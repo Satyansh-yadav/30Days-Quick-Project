@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Profile Card</title>
+    
+
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+    <button class="visit-btn" onclick="showCard()">Visit Card</button>
+    <div class="container" id="profileCard">
+        <div class="card">
+            <img src="WhatsApp Image 2025-02-26 at 12.37.18 PM.jpeg" alt="Profile Picture" class="profile-img">
+            <h2>Satyansh Yadav</h2>
+            <p> Web Developer</p>
+            <div class="stats">
+                <div>
+                    <h3>1.9K</h3>
+                    <p>Followers</p>
+                </div>
+                <div>
+                    <h3>500</h3>
+                    <p>Following</p>
+                </div>
+            </div>
+            <button class="btn follow">Follow</button>
+            <button class="btn message">Message</button>
+        </div>
+    </div>
+
+    <script>
+        function showCard() {
+            document.getElementById("profileCard").style.display = "block";
+            document.querySelector(".visit-btn").style.display = "none";
+        }
+    </script>
+</body>
+</html>
