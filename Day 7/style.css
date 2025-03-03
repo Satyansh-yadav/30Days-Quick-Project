@@ -1,0 +1,135 @@
+*,
+*::before,
+*::after {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --hue: 223;
+    --sat: 10%;
+    --hue2: 123;
+    --sat2: 70%;
+    --white: hsl(0, 0%, 100%);
+    --black: hsl(0, 0%, 0%);
+    --gray: hsl(var(--hue), var(--sat), 50%);
+    --trans-dur: 0.3s;
+    --trans-timing: cubic-bezier(0.65, 0, 0.35, 1);
+    font-size: clamp(4rem, 3.8rem + 1vw, 5rem);
+}
+
+body,
+input {
+    color: hsl(var(--hue), var(--sat), 5%);
+    font: 1em/1.5 sans-serif;
+    transition: background-color var(--trans-dur), color var(--trans-dur);
+}
+
+body {
+    display: grid;
+    height: 100vh;
+}
+
+input,
+label {
+    -webkit-tap-highlight-color: transparent;
+}
+
+input {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.switch {
+    display: flex;
+}
+
+.switch__input {
+    width: 2.25em;
+    height: 1.5em;
+    border: 0.0625em solid transparent;
+    border-radius: 0.75em;
+    cursor: pointer;
+    outline: 0.125em solid hsla(var(--hue), var(--sat), 10%, 0);
+    position: relative;
+    transition: box-shadow var(--trans-dur), outline var(--trans-dur);
+    background: linear-gradient(var(--hue), var(--sat), 70%), linear-gradient(var(--white), var(--hue), var(--sat), 90%);
+    box-shadow: 0 0 0.0625em hsla(var(--hue), var(--sat), 10%, 0.3) inset,
+                0 0.375em 0.375em hsla(var(--hue), var(--sat), 10%, 0) inset,
+                0 0 0 0.75em hsla(var(--hue2), var(--sat2), 50%, 0) inset;
+}
+
+.switch__input:before,
+.switch__input:after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+}
+
+.switch__input:before {
+    width: 1em;
+    height: 1em;
+    margin: 0.0625em;
+    background: linear-gradient(hsl(var(--hue), var(--sat), 85%), hsl(var(--hue), var(--sat), 90%));
+    box-shadow: 0 0 0 1px hsl(var(--hue), var(--sat), 45%), 0.125em 0.125em 0.25em hsla(var(--hue), var(--sat), 10%, 0.3);
+    transition: transform var(--trans-dur) var(--trans-timing);
+}
+
+.switch__input:after {
+    width: 0.375em;
+    height: 0.375em;
+    margin: 0.5em;
+    background-color: hsl(var(--hue), var(--sat), 75%);
+    transition: background-color var(--trans-dur) var(--trans-timing),
+                box-shadow var(--trans-dur) var(--trans-timing),
+                transform var(--trans-dur) var(--trans-timing);
+}
+
+.switch__input:checked {
+    box-shadow: 0 0 0.0625em hsla(var(--hue), var(--sat), 10%, 0.3) inset,
+                0 0.375em 0.375em hsla(var(--hue), var(--sat), 10%, 0.15) inset,
+                0 0 0 0.75em hsl(var(--hue2), var(--sat2), 50%) inset;
+}
+
+.switch__input:checked:before,
+.switch__input:checked:after {
+    transform: translateX(0.8125em);
+}
+
+.switch__input:checked:after {
+    background-color: hsl(var(--hue2), var(--sat2), 90%);
+    box-shadow: 0 0 0.125em 0.125em hsl(var(--hue2), var(--sat2), 70%),
+                0 0 0.0625em hsl(var(--hue2), var(--sat2), 70%) inset,
+                0 -1px 0 hsl(var(--hue), var(--sat), 45%),
+                0 1px 0 hsl(var(--hue), var(--sat), 85%);
+}
+
+.switches {
+    background-color: hsl(var(--hue), var(--sat), 95%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75em 0;
+}
+
+[data-theme="dark"] {
+    background-color: hsl(var(--hue), var(--sat), 10%);
+}
+
+[data-theme="dark"],
+[data-theme="dark"] input {
+    color: hsl(var(--hue), var(--sat), 95%);
+}
+
+@media (min-width: 768px) {
+    .switches {
+        flex-direction: row;
+    }
+}
